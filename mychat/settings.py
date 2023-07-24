@@ -28,8 +28,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-h%9!%jjrnwpn5z
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['web-production-c625.up.railway.app', '127.0.0.1', 'localhost']
-CSRF_TRUSTED_ORIGINS = ['https://web-production-c625.up.railway.app']
+ALLOWED_HOSTS = ['facechaser.up.railway.app', '127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['https://facechaser.up.railway.app']
 
 
 # Application definition
