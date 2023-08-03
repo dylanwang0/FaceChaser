@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from agora_token_builder import RtcTokenBuilder
+from agora_token_builder import RtmTokenBuilder
 import random
 import time
 import json
@@ -22,6 +23,18 @@ def getToken(request):
     role = 1
 
     token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
+    return JsonResponse({'token':token, 'uid':uid}, safe=False)
+
+def getRTMToken(request):
+    appId = '7684fcafa4e447d18c2d0200b17ae684'
+    appCertificate = 'f5368fff6a984c6e8dadf781f4fc129c'
+    uid = '123'
+    expirationTimeInSeconds = 3600 * 24
+    currentTimeStamp = time.time()
+    privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds
+    role = 1
+
+    token = RtmTokenBuilder.buildToken(appId, appCertificate, uid, role, privilegeExpiredTs)
     return JsonResponse({'token':token, 'uid':uid}, safe=False)
 
 def lobby(request):

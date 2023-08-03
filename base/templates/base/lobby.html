@@ -18,9 +18,7 @@
           class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-200 dark:text-neutral-200"
         >
           <div class="w-full">
-            <div
-              class="block rounded-lg shadow-lg bg-neutral-800"
-            >
+            <div class="block rounded-lg shadow-lg bg-neutral-800">
               <div class="g-0 lg:flex lg:flex-wrap">
                 <!-- Left column container-->
                 <div class="px-4 md:px-0 lg:w-6/12">
@@ -68,7 +66,7 @@
                         <label
                           for="exampleFormControlInput11"
                           id="exampleFormControlInput12"
-                          class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6]  transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none text-neutral-200 peer-focus:text-primary"
+                          class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none text-neutral-200 peer-focus:text-primary"
                           >Username
                         </label>
                       </div>
@@ -126,12 +124,13 @@
                     </h4>
                     <p class="text-sm">
                       FaceChaser is a simple yet effective video chatting
-                      application for you to use during any occasion. It
-                      features the basic video chatting capabilities and allows
-                      for meetings designed for any size. Start your own meeting
-                      or join an existing one. Enter the meeting room name, your
-                      display name or simply join as a guest and start using
-                      FaceChaser right away.
+                      application for you to use during any occasion. Supporting
+                      chat rooms of any size, it features the basic video
+                      chatting capabilities and additional features like live
+                      captioning. Start your own meeting or join an existing
+                      one. Enter the meeting room name, your display name or
+                      simply join as a guest and start using FaceChaser right
+                      away.
                     </p>
                   </div>
                 </div>
@@ -169,13 +168,21 @@
     let response = await fetch(`/get_token/?channel=${room}`);
     let data = await response.json();
 
+    let rtmtokenresponse = await fetch(`/get_rtm_token/`);
+    let rtmtokendata = await rtmtokenresponse.json();
+
     let UID = data.uid;
     let token = data.token;
+
+    let userAccount = rtmtokendata.uid;
+    let rtmtoken = rtmtokendata.token;
 
     sessionStorage.setItem("UID", UID);
     sessionStorage.setItem("token", token);
     sessionStorage.setItem("room", room);
     sessionStorage.setItem("name", name);
+    sessionStorage.setItem("userAccount", userAccount);
+    sessionStorage.setItem("rtmtoken", rtmtoken);
 
     window.open("/room/", "_self");
   };
