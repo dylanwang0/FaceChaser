@@ -148,7 +148,7 @@ recognition.onresult = (event) => {
   const confidence = event.results[current][0].confidence;
   if (!localTracks[0].muted) {
     newText = NAME + ": " + text;
-    //transcriptText.innerText = NAME + ": " + text;
+    transcriptText.innerText = NAME + ": " + text;
     RTMChannel.sendMessage({ text: newText });
   }
 };
